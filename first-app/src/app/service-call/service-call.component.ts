@@ -10,6 +10,7 @@ import { ForgotUsernameModel } from '../models/service';
 export class ServiceCallComponent implements OnInit {
  newData: any;
  postData: any;
+ errorMessage: string;
   constructor(private service: ServiceCallService) { }
 
   ngOnInit() {
@@ -18,18 +19,29 @@ export class ServiceCallComponent implements OnInit {
   onGetCall() {
     this.service.getServiceCall().subscribe((data) => {
      this.newData = data;
-    });
+    },
+    (err) => {
+      console.log(err);
+      switch (err.status) {
+     case 404:
+    this.errorMessage = err.error;
+    break;
+    case 412:
+      this.errorMessage = 'User Not found';
+      break;
+    }
+  });
   }
 
 
-  onPostCall(){
+  onPostCall() {
     const body: ForgotUsernameModel = {
       firstName : 'avi',
       lastName : 'Mar',
       age: '25'
     };
-    this.service.postServiceCall(body).subscribe((data)=>{
+    this.service.postServiceCall(body).subscribe((data) => {
       this.postData = data;
-    })
+    });
   }
 }
