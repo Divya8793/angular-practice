@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -10,6 +11,7 @@ import { FourthComponentComponent } from './fourth-component/fourth-component.co
 import { SixthComponentComponent } from './sixth-component/sixth-component.component';
 import { HomeComponent } from './home/home.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { ServiceCallComponent } from './service-call/service-call.component';
 
 @NgModule({
   declarations: [
@@ -20,11 +22,13 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     FourthComponentComponent,
     SixthComponentComponent,
     HomeComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    ServiceCallComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
